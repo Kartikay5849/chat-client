@@ -2,10 +2,9 @@
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
   "routes": [
     {
-      "src":"/(.*)",
-      "headers": {
-        "Access-Control-Allow-Origin": "*"
-      }
+      "src": "/(.*)",
+      "dest": "src/index.html",
+      "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
     }
   ]
 }
