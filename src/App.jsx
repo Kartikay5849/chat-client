@@ -9,6 +9,8 @@ import { userExists, userNotExists } from "./redux/reducers/auth";
 import { Toaster } from "react-hot-toast";
 import { SocketProvider } from "./socket";
 
+
+// Reducing the initial load time by loading components only when needed
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
 const Chat = lazy(() => import("./pages/Chat"));
@@ -27,7 +29,7 @@ const App = () => {
   const { user, loader } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
-
+// getting details on first render
   useEffect(() => {
     axios
       .get(`${server}/api/v1/user/me`, { withCredentials: true })
@@ -67,7 +69,7 @@ const App = () => {
           <Route path="/admin/users" element={<UserManagement />} />
           <Route path="/admin/chats" element={<ChatManagement />} />
           <Route path="/admin/messages" element={<MessagesManagement />} />
-
+{/* Styled Not found page */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
